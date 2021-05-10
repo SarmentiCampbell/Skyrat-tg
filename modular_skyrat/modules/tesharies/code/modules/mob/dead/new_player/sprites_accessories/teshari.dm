@@ -71,15 +71,8 @@
 	name = "Teshari Twies"
 	icon_state = "hair_teshari_twies"
 
-//The tail
-/datum/sprite_accessory/tails/teshari
-	icon = 'modular_skyrat/modules/tesharies/icons/mob/sprite_accessory/teshari_tails.dmi'
-	name = "Tesh Tail"
-	icon_state = "teshari"
-	recommended_species = list("teshari")
-
 //The tail markings
-/datum/sprite_accessory/tailmark/teshari //??? doesn't work, edit the fluffy one into tail and just be done with it.
+/datum/sprite_accessory/tailmark/teshari
 	icon = 'modular_skyrat/modules/tesharies/icons/mob/sprite_accessory/teshari_mark.dmi'
 	default_color = DEFAULT_TERTIARY
 	recommended_species = list("teshari")
@@ -97,7 +90,7 @@
 	icon_state = "teshari_fem"
 
 /datum/sprite_accessory/tailmark/teshari/femalt
-	name = "Teshari Femalt"
+	name = "Teshari Fem(ALT)"
 	icon_state = "teshari_femalt"
 
 /datum/sprite_accessory/tailmark/teshari/male
@@ -105,13 +98,24 @@
 	icon_state = "teshari_male"
 
 /datum/sprite_accessory/tailmark/teshari/malealt
-	name = "Teshari Malealt"
+	name = "Teshari Male(ALT)"
 	icon_state = "teshari_malealt"
 
 /datum/sprite_accessory/tailmark/teshari/fluffy
-	name = "Teshari Fluffy"
+	name = "Teshari Fluffy(ALT)"
 	icon_state = "teshari_fluffytail"
 
 /datum/sprite_accessory/tailmark/teshari/feathers
 	name = "Teshari Feathers"
 	icon_state = "teshari_feathers"
+
+//The tail
+/datum/sprite_accessory/tails/teshari
+	icon = 'modular_skyrat/modules/tesharies/icons/mob/sprite_accessory/teshari_tails.dmi'
+	name = "Tesh Tail"
+	icon_state = "teshari"
+	recommended_species = list("teshari")
+
+/datum/sprite_accessory/tails/teshari/fluffy
+	name = "Tesh Fluffy Tail(ALT)"
+	icon_state = "teshari_fluffy"

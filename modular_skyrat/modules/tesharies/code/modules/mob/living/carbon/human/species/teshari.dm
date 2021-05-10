@@ -34,14 +34,14 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	learnable_languages = list(/datum/language/common, /datum/language/teshari)
 
-/datum/species/vox/get_random_features()
+/datum/species/teshari/get_random_features()
 	var/list/returned = MANDATORY_FEATURE_LIST
 	returned["mcolor"] = pick("7D8", "7DA", "7CD", "7DC")
 	returned["mcolor2"] = pick("ED8", "EC8")
 	returned["mcolor3"] = pick("222", "4EF", "4FB", "84F", "323")
 	return returned
 
-/datum/species/vox/get_random_body_markings(list/passed_features)
+/datum/species/teshari/get_random_body_markings(list/passed_features)
 	var/name = pick(list("Tesh Feathers", "Tesh Fluff", "Tesh SF"))
 	var/datum/body_marking_set/BMS = GLOB.body_marking_sets[name]
 	var/list/markings = list()

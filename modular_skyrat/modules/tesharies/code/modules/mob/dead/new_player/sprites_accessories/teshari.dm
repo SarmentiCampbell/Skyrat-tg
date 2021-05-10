@@ -112,3 +112,6 @@
 	name = "Teshari Fluffy"
 	icon_state = "teshari_fluffytail"
 
+/datum/sprite_accessory/tailmark/teshari/feathers
+	name = "Teshari Feathers"
+	icon_state = "teshari_feathers"

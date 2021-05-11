@@ -20,3 +20,13 @@
 	name = "Teshari SF"
 	icon_state = "teshi_sf"
 	affected_bodyparts = CHEST | LEG_RIGHT | LEG_LEFT | HAND_LEFT | HAND_RIGHT
+
+/datum/body_marking/tertiary/teshari/male_pattern
+	name = "Teshari Female Pattern"
+	icon_state = "tesh-pattern-fem"
+	affected_bodyparts = CHEST | HEAD | LEG_RIGHT | LEG_LEFT | HAND_LEFT | HAND_RIGHT
+
+/datum/body_marking/tertiary/teshari/female_pattern
+	name = "Teshari Male Pattern"
+	icon_state = "tesh-pattern-male"
+	affected_bodyparts = CHEST | HEAD | LEG_RIGHT | LEG_LEFT | ARM_LEFT | ARM_RIGHT

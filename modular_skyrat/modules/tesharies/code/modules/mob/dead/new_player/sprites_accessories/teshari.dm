@@ -76,7 +76,7 @@
 	icon = 'modular_skyrat/modules/tesharies/icons/mob/sprite_accessory/teshari_mark.dmi'
 	default_color = DEFAULT_TERTIARY
 	recommended_species = list("teshari")
-	relevent_layers = list(BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
+	relevent_layers = list(BODY_ADJ_LAYER, BODY_BEHIND_LAYER, BODY_FRONT_LAYER)
 	key = "tailmark"
 	generic = "Tail Markings"
 

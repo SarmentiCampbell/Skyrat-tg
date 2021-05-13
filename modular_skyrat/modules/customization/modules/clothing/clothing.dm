@@ -8,6 +8,7 @@
 	var/worn_icon_taur_paw
 	var/worn_icon_taur_hoof
 	var/worn_icon_muzzled
+	var/worn_icon_teshari
 
 /obj/item/clothing/head
 	mutant_variants = STYLE_MUZZLE | STYLE_VOX

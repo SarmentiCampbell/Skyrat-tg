@@ -188,7 +188,8 @@ There are several things that need to be remembered:
 	apply_overlay(ID_LAYER)
 	//apply_overlay(ID_CARD_LAYER) //SKYRAT EDIT REMOVAL - Ugly ID
 
-
+//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+/*
 /mob/living/carbon/human/update_inv_gloves()
 	remove_overlay(GLOVES_LAYER)
 
@@ -222,8 +223,7 @@ There are several things that need to be remembered:
 	apply_overlay(GLOVES_LAYER)
 
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
+
 /mob/living/carbon/human/update_inv_glasses()
 	remove_overlay(GLASSES_LAYER)
 
@@ -250,8 +250,7 @@ There are several things that need to be remembered:
 				glasses_overlay.pixel_y += dna.species.offset_features[OFFSET_GLASSES][2]
 			overlays_standing[GLASSES_LAYER] = glasses_overlay
 	apply_overlay(GLASSES_LAYER)
-*/
-//SKYRAT EDIT REMOVAL END
+
 
 
 /mob/living/carbon/human/update_inv_ears()
@@ -279,8 +278,7 @@ There are several things that need to be remembered:
 	apply_overlay(EARS_LAYER)
 
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
+
 /mob/living/carbon/human/update_inv_shoes()
 	remove_overlay(SHOES_LAYER)
 
@@ -342,6 +340,8 @@ There are several things that need to be remembered:
 			overlays_standing[HEAD_LAYER] = head_overlay
 	apply_overlay(HEAD_LAYER)
 
+//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
+/*
 /mob/living/carbon/human/update_inv_belt()
 	remove_overlay(BELT_LAYER)
 
@@ -365,8 +365,6 @@ There are several things that need to be remembered:
 
 
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
 /mob/living/carbon/human/update_inv_wear_suit()
 	remove_overlay(SUIT_LAYER)
 

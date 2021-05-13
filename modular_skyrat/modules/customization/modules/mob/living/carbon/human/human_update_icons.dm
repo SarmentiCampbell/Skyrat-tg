@@ -22,6 +22,8 @@
 
 		var/applied_style = NONE
 		var/icon_file = w_uniform.worn_icon
+		if(dna.species.id == "teshari")
+			applied_style = STYLE_TESH
 		if(dna.species.mutant_bodyparts["taur"])
 			var/datum/sprite_accessory/taur/S = GLOB.sprite_accessories["taur"][dna.species.mutant_bodyparts["taur"][MUTANT_INDEX_NAME]]
 			if(w_uniform.mutant_variants & S.taur_mode)
@@ -42,6 +44,8 @@
 				icon_file = w_uniform.worn_icon_taur_hoof || 'modular_skyrat/master_files/icons/mob/clothing/under/uniform_taur_hoof.dmi'
 			if(STYLE_TAUR_PAW)
 				icon_file = w_uniform.worn_icon_taur_paw || 'modular_skyrat/master_files/icons/mob/clothing/under/uniform_taur_paw.dmi'
+			if(STYLE_TESH)
+				icon_file = w_uniform.worn_icon_teshari || 'modular_skyrat/modules/tesharies/icons/mob/clothing/uniform.dmi'
 
 		if(applied_style & STYLE_TAUR_ALL)
 			x_override = 64
@@ -83,6 +87,8 @@
 		update_observer_view(wear_suit,1)
 		var/icon_file = wear_suit.worn_icon
 		var/applied_style = NONE
+		if(dna.species.id == "teshari")
+			applied_style = STYLE_TESH
 		if(dna.species.mutant_bodyparts["taur"])
 			var/datum/sprite_accessory/taur/S = GLOB.sprite_accessories["taur"][dna.species.mutant_bodyparts["taur"][MUTANT_INDEX_NAME]]
 			if(wear_suit.mutant_variants & S.taur_mode)
@@ -103,6 +109,8 @@
 				icon_file = wear_suit.worn_icon_taur_hoof || 'modular_skyrat/master_files/icons/mob/clothing/suit_taur_hoof.dmi'
 			if(STYLE_TAUR_PAW)
 				icon_file = wear_suit.worn_icon_taur_paw || 'modular_skyrat/master_files/icons/mob/clothing/suit_taur_paw.dmi'
+			if(STYLE_TESH)
+				icon_file = wear_suit.worn_icon_teshari || 'modular_skyrat/modules/tesharies/icons/mob/clothing/suit.dmi'
 
 		if(applied_style & STYLE_TAUR_ALL)
 			x_override = 64
@@ -141,6 +149,9 @@
 		update_observer_view(shoes,1)
 		var/icon_file = shoes.worn_icon
 		var/applied_styles = NONE
+		if(dna.species.id == "teshari")
+			applied_styles |= STYLE_TESH
+			icon_file = shoes.worn_icon_teshari || 'modular_skyrat/modules/tesharies/icons/mob/clothing/shoes.dmi'
 		if((DIGITIGRADE in dna.species.species_traits) && (shoes.mutant_variants & STYLE_DIGITIGRADE))
 			applied_styles |= STYLE_DIGITIGRADE
 			icon_file = shoes.worn_icon_digi || 'modular_skyrat/master_files/icons/mob/clothing/feet_digi.dmi'
@@ -263,6 +274,9 @@
 			if(dna.species.id == "vox")
 				applied_style |= STYLE_VOX
 				icon_file = 'modular_skyrat/master_files/icons/mob/clothing/eyes_vox.dmi'
+			if(dna.species.id == "teshari")
+				applied_style |= STYLE_TESH
+				icon_file = 'modular_skyrat/modules/tesharies/icons/mob/clothing/eyes.dmi'
 			overlays_standing[GLASSES_LAYER] = glasses.build_worn_icon(default_layer = GLASSES_LAYER, default_icon_file = 'icons/mob/clothing/eyes.dmi', override_icon = icon_file, mutant_styles = applied_style)
 
 		var/mutable_appearance/glasses_overlay = overlays_standing[GLASSES_LAYER]
@@ -272,3 +286,95 @@
 				glasses_overlay.pixel_y += dna.species.offset_features[OFFSET_GLASSES][2]
 			overlays_standing[GLASSES_LAYER] = glasses_overlay
 	apply_overlay(GLASSES_LAYER)
+
+
+/mob/living/carbon/human/update_inv_ears()
+	remove_overlay(EARS_LAYER)
+
+	if(!get_bodypart(BODY_ZONE_HEAD)) //decapitated
+		return
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_EARS) + 1]
+		inv.update_appearance()
+
+	if(ears)
+		ears.screen_loc = ui_ears //move the item to the appropriate screen loc
+		if(client && hud_used?.hud_shown)
+			if(hud_used.inventory_shown) //if the inventory is open
+				client.screen += ears //add it to the client's screen
+		update_observer_view(ears,1)
+		var/icon_file = ears.worn_icon
+		var/applied_style = NONE
+		if(dna.species.id == "teshari")
+			applied_style |= STYLE_TESH
+			icon_file = 'modular_skyrat/modules/tesharies/icons/mob/clothing/ears.dmi'
+		overlays_standing[EARS_LAYER] = ears.build_worn_icon(default_layer = EARS_LAYER, default_icon_file = 'icons/mob/clothing/ears.dmi', override_icon = icon_file, mutant_styles = applied_style)
+		var/mutable_appearance/ears_overlay = overlays_standing[EARS_LAYER]
+		if(OFFSET_EARS in dna.species.offset_features)
+			ears_overlay.pixel_x += dna.species.offset_features[OFFSET_EARS][1]
+			ears_overlay.pixel_y += dna.species.offset_features[OFFSET_EARS][2]
+		overlays_standing[EARS_LAYER] = ears_overlay
+	apply_overlay(EARS_LAYER)
+
+/mob/living/carbon/human/update_inv_belt()
+	remove_overlay(BELT_LAYER)
+
+	if(client && hud_used)
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BELT) + 1]
+		inv.update_appearance()
+
+	if(belt)
+		belt.screen_loc = ui_belt
+		if(client && hud_used?.hud_shown)
+			client.screen += belt
+		update_observer_view(belt)
+		var/icon_file = belt.worn_icon
+		var/applied_style = NONE
+		if(dna.species.id == "teshari")
+			applied_style |= STYLE_TESH
+			icon_file = 'modular_skyrat/modules/tesharies/icons/mob/clothing/belt.dmi'
+		overlays_standing[BELT_LAYER] = belt.build_worn_icon(default_layer = BELT_LAYER, default_icon_file = 'icons/mob/clothing/belt.dmi', override_icon = icon_file, mutant_styles = applied_style)
+		var/mutable_appearance/belt_overlay = overlays_standing[BELT_LAYER]
+		if(OFFSET_BELT in dna.species.offset_features)
+			belt_overlay.pixel_x += dna.species.offset_features[OFFSET_BELT][1]
+			belt_overlay.pixel_y += dna.species.offset_features[OFFSET_BELT][2]
+		overlays_standing[BELT_LAYER] = belt_overlay
+
+	apply_overlay(BELT_LAYER)
+
+/mob/living/carbon/human/update_inv_gloves()
+	remove_overlay(GLOVES_LAYER)
+
+	if(client && hud_used?.inv_slots[TOBITSHIFT(ITEM_SLOT_GLOVES) + 1])
+		var/atom/movable/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_GLOVES) + 1]
+		inv.update_appearance()
+	if(!gloves && blood_in_hands && (num_hands > 0) && !(NOBLOODOVERLAY in dna.species.species_traits))
+		var/mutable_appearance/bloody_overlay = mutable_appearance('icons/effects/blood.dmi', "bloodyhands", -GLOVES_LAYER)
+		if(num_hands < 2)
+			if(has_left_hand(FALSE))
+				bloody_overlay.icon_state = "bloodyhands_left"
+			else if(has_right_hand(FALSE))
+				bloody_overlay.icon_state = "bloodyhands_right"
+
+		overlays_standing[GLOVES_LAYER] = bloody_overlay
+
+	var/mutable_appearance/gloves_overlay = overlays_standing[GLOVES_LAYER]
+	if(gloves)
+		gloves.screen_loc = ui_gloves
+		if(client && hud_used?.hud_shown)
+			if(hud_used.inventory_shown)
+				client.screen += gloves
+		update_observer_view(gloves,1)
+		var/icon_file = gloves.worn_icon
+		var/applied_style = NONE
+		if(dna.species.id == "teshari")
+			applied_style |= STYLE_TESH
+			icon_file = gloves.worn_icon_teshari || 'modular_skyrat/modules/tesharies/icons/mob/clothing/hands.dmi'
+		overlays_standing[GLOVES_LAYER] = gloves.build_worn_icon(default_layer = GLOVES_LAYER, default_icon_file = 'icons/mob/clothing/hands.dmi', override_icon = icon_file, mutant_styles = applied_style)
+		gloves_overlay = overlays_standing[GLOVES_LAYER]
+		if(OFFSET_GLOVES in dna.species.offset_features)
+			gloves_overlay.pixel_x += dna.species.offset_features[OFFSET_GLOVES][1]
+			gloves_overlay.pixel_y += dna.species.offset_features[OFFSET_GLOVES][2]
+	overlays_standing[GLOVES_LAYER] = gloves_overlay
+	apply_overlay(GLOVES_LAYER)

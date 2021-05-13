@@ -122,8 +122,6 @@
 		update_hud_wear_mask(wear_mask)
 
 	apply_overlay(FACEMASK_LAYER)
-*/
-//SKYRAT EDIT REMOVAL END
 
 /mob/living/carbon/update_inv_neck()
 	remove_overlay(NECK_LAYER)
@@ -152,8 +150,6 @@
 
 	apply_overlay(BACK_LAYER)
 
-//SKYRAT EDIT REMOVAL BEGIN - CUSTOMIZATION (moved to modular)
-/*
 /mob/living/carbon/update_inv_head()
 	remove_overlay(HEAD_LAYER)
 
